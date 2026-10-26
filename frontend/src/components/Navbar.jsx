@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Wallet, LogOut, User, ShieldCheck } from 'lucide-react';
+import { Wallet, LogOut, User, CreditCard, TrendingUp, PieChart } from 'lucide-react';
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = async () => {
     await logout();
@@ -23,6 +24,8 @@ const Navbar = () => {
     }
   };
 
+  const isActive = (path) => location.pathname === path;
+
   return (
     <header className="navbar-container">
       <div className="navbar-content">
@@ -39,12 +42,24 @@ const Navbar = () => {
         <div className="nav-actions">
           {isAuthenticated ? (
             <div className="nav-logged-in">
-              <Link to="/dashboard" className="nav-link">
+              <Link to="/dashboard" className={`nav-link ${isActive('/dashboard') ? 'active-nav' : ''}`}>
                 Dashboard
               </Link>
-              <Link to="/profile" className="nav-link">
-                <User size={16} />
-                <span>Profile & Settings</span>
+              <Link to="/expenses" className={`nav-link ${isActive('/expenses') ? 'active-nav' : ''}`}>
+                <CreditCard size={15} />
+                <span>Expenses</span>
+              </Link>
+              <Link to="/incomes" className={`nav-link ${isActive('/incomes') ? 'active-nav' : ''}`}>
+                <TrendingUp size={15} />
+                <span>Incomes</span>
+              </Link>
+              <Link to="/budgets" className={`nav-link ${isActive('/budgets') ? 'active-nav' : ''}`}>
+                <PieChart size={15} />
+                <span>Budgets</span>
+              </Link>
+              <Link to="/profile" className={`nav-link ${isActive('/profile') ? 'active-nav' : ''}`}>
+                <User size={15} />
+                <span>Profile</span>
               </Link>
 
               {user && (

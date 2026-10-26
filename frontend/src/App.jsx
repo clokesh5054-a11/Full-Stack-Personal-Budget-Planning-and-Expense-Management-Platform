@@ -7,6 +7,9 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Expenses from './pages/Expenses';
+import Incomes from './pages/Incomes';
+import Budgets from './pages/Budgets';
 import Profile from './pages/Profile';
 import './App.css';
 
@@ -26,6 +29,30 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/expenses"
+                element={
+                  <ProtectedRoute>
+                    <Expenses />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/incomes"
+                element={
+                  <ProtectedRoute>
+                    <Incomes />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/budgets"
+                element={
+                  <ProtectedRoute>
+                    <Budgets />
                   </ProtectedRoute>
                 }
               />
